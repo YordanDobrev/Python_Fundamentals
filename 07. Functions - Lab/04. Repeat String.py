@@ -4,7 +4,6 @@ repeater = int(input())
 
 # Logic
 
-
 final_result = lambda text, num: text * num
 
 # Print Output
