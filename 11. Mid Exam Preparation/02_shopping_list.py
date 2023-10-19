@@ -11,17 +11,16 @@ def unnecessary(journal, item):
 
 
 def correct(journal, old_item, new_item):
-    for i in range(len(journal)):
-        if journal[i] == old_item:
-            journal[i] = new_item
+    if old_item in journal:
+        index = journal.index(old_item)
+        journal[index] = new_item
     return journal
 
 
 def rearrange(journal, item):
-    for i in range(len(journal)):
-        if journal[i] == item:
-            journal.remove(item)
-            journal.extend(item)
+    if item in journal:
+        journal.remove(item)
+        journal.append(item)
     return journal
 
 
