@@ -1,52 +1,51 @@
-def middle(elements):
-    middle_index = len(elements) // 2
-    elements.insert(middle_index, f"-{counter}a")
-    elements.insert(middle_index, f"-{counter}a")
-    return elements
+def main():
+    elements = input().split()
+    moves = 0
 
-def match(numbers, all_elements):
-    numbers = numbers.split()
+    while True:
+        moves += 1
+        command = input()
 
-    first_index = int(numbers[0])
-    second_index = int(numbers[1])
+        if command == "end":
+            print(f"Sorry you lose :(\n{' '.join(elements)}")
+            break
+        first_index, second_index = map(int, command.split())
 
-    if first_index == second_index \
-            or first_index < 0 \
-            or first_index > len(all_elements) \
-            or second_index < 0 \
-            or second_index > len(all_elements):
-        middle(all_elements)
-        print(f"Invalid input! Adding additional elements to the board")
+        if invalid(first_index, second_index, elements):
+            handle_invalid(elements, moves)
+        else:
+            valid(first_index, second_index, elements, moves)
 
-    elif all_elements[first_index] == all_elements[second_index]:
-        matched_pair = all_elements[first_index]
-        all_elements.remove(all_elements[first_index])
-        all_elements.remove(all_elements[second_index])
-        print(f"Congrats! You have found matching elements - ${matched_pair}!")
 
-    elif first_index in all_elements != second_index in all_elements:
+def valid(first_index, second_index, elements, moves_counter):
+    if elements[first_index] == elements[second_index]:
+        print(f"Congrats! You have found matching elements - {elements[first_index]}!")
+        second_element = elements[second_index]
+        elements.pop(first_index)
+        elements.remove(second_element)
+    else:
         print("Try again!")
 
-    elif len(all_elements) == 0:
-        print(f"You have won in {counter} turns!")
+    if len(elements) == 0:
+        print(f"You have won in {moves_counter} turns!")
         exit()
 
 
-# Read User Input
-sequence_of_elements = input().split()
-command = input()
+def handle_invalid(all_elements, move_counter):
+    mid_index = len(all_elements) // 2
+    all_elements.insert(mid_index, f"-{move_counter}a")
+    all_elements.insert(mid_index, f"-{move_counter}a")
+    print("Invalid input! Adding additional elements to the board")
 
-# Logic
-counter = 0
 
-while command != "end":
-    counter += 1
-    current_pair = command
-    match(current_pair, sequence_of_elements)
-    command = input()
-    if command == "end":
-        print(f"Sorry you lose :( \n"
-              f"{' '.join(sequence_of_elements)}")
-        break
+def invalid(index1, index2, the_elements):
+    return (
+        index1 == index2
+        or index1 < 0
+        or index2 < 0
+        or index1 >= len(the_elements)
+        or index2 >= len(the_elements)
+    )
 
-# Print Output
+
+main()
