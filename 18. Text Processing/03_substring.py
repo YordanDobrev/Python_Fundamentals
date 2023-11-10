@@ -1,7 +1,4 @@
-word_to_search = input()
-text = input()
+word = "Let’s learn programming"
+word = word[-1:] + word[:-1]
 
-while word_to_search in text:
-    text = text.replace(word_to_search,"")
-
-print(text)
+print(word)
