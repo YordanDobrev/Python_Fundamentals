@@ -5,6 +5,3 @@ while word_to_search in text:
     text = text.replace(word_to_search,"")
 
 print(text)
-
-
-
