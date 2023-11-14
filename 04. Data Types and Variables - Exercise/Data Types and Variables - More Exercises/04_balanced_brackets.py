@@ -10,11 +10,12 @@ for i in range(lines):
     if current_symbol == "(" or current_symbol == ")":
         string += current_symbol
 
-for j in range(len(string)):
-    if string[j] == "(" and string[j+1] == ")":
+for j in range(0, len(string), 2):
+    if string[j] == "(" and string[j + 1] == ")":
         balanced = True
     else:
         balanced = False
+        break
 
 # Print Output
 
