@@ -20,9 +20,11 @@ while contest_command != "end of submissions":
 
     contest_command = input()
 
-for key, values in contest.items():
-    tanq_dict = {}
+total_points = 0
 
+for key, values in sorted(contest.items()):
+    tanq_dict = {}
+    print(key)
     for i in range(0, len(values), 2):
         course = values[i]
         score = int(values[i + 1])
@@ -33,4 +35,7 @@ for key, values in contest.items():
 
     sorting = {k: v for k, v in sorted(tanq_dict.items(), key=lambda item: item[1])}
 
-    print(key, sorting)
+    for k, v in reversed(list(sorting.items())):
+        print(f"#  {k} -> {v}")
+
+# print(contest)
