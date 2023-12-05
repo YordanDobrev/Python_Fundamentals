@@ -10,4 +10,5 @@ second_line = input()
 third_line = input()
 forth_line = input()
 
-print(f"{digit_check(first_line)} {digit_check(second_line)} {digit_check(third_line)} {digit_check(forth_line)}")
+print(f"{digit_check(first_line)} {digit_check(second_line)} \n"
+      f"{digit_check(third_line)} {digit_check(forth_line)}")
